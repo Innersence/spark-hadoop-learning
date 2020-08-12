@@ -2,7 +2,9 @@ package com.flex.spark
 
 import com.flex.spark.common.{FileUtils, Utils}
 import org.apache.spark.{SparkConf, SparkContext}
-import com.flex.spark.classwrapper.{UrlString,UrlStringJava}
+import com.flex.spark.classwrapper.UrlString
+import com.flex.spark.classwrapper.UrlStringJava
+import org.apache.hadoop.yarn.client.api.YarnClient
 
 import scala.collection.mutable
 
@@ -59,6 +61,12 @@ object WordCount {
     println(urlStrings)
     val mapAfter = Utils.getTimestamp
     println("map cost :"+(mapAfter - mapBefore))
+
+  }
+
+  def applicationMaster(): Unit ={
+    import org.apache.hadoop.yarn.api._
+    val client = YarnClient.createYarnClient()
 
   }
 }
